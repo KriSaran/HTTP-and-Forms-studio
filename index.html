@@ -1,0 +1,52 @@
+<!doctype html>
+
+<head>
+	<meta charset="utf-8">
+	<script>
+		// TODO: create a handler
+    function searchEngine(){
+		let form=document.querySelector("form");
+		let button=document.getElementById("go");
+		const actions={
+			google:"https://www.google.com/search",
+			duckduckgo:"https://duckduckgo.com/",
+			bing:"https://www.bing.com/search",
+			ask:"https://www.ask.com/web",
+		};
+
+	
+			let userText=document.getElementById("q");
+			let option=document.querySelector('input[name="search"]:checked');
+        
+			if(userText.value===""||option===null){
+				//alert(option.value);
+				alert("Fields required for search");
+				event.preventDefault();
+			}	
+			let url=actions[option.value];
+			form.action=url;
+		}
+		window.addEventListener("load", function(event){
+			let form =document.getElementById("searchForm");
+			form.addEventListener("submit",searchEngine);
+    });
+	</script>
+</head>
+
+<body>
+
+	<form id="searchForm">
+    <!-- TODO: add form elements -->
+	<label ><input id ="q"name="q" type="text"/></label>
+	<br>
+	<br>
+	
+	   <label>Google <input name="search" id="google"value="google" type="radio" /></label>
+		<label>DuckDuckGo<input name="search" value="duckduckgo" type="radio"/></label>
+		<label>Bing <input name="search" value="bing" type="radio"/></label>
+		<label>Ask<input name="search"value="ask" type="radio"/></label>
+    <button id="go">Go!</button>
+		
+	</form>
+
+</body>
